@@ -44,18 +44,24 @@ http://localhost:3000/event?message=foobar
 
 The loader is a separate process which is meant to be run periodically to read events from the broker and COPY them into redshift. In general, you want to run this as a cron job periodically, eg, every 15 minutes. You want to run 1 loader per table, regardless of how many web servers you have generating events to the broker.
 
-To run the loader manually, you can run the following:
+When the loader is run, it will generate alot of output... The get_records request runs in a loop, 100 times, so there'll be a ton of INFO statements to that effect. If successful and events are loaded, the end of the output looks like this:
+```
+I, [2014-11-10T13:21:17.529420 #40630]  INFO -- : RedTrack::Loader (23.77s elapsed) Load kinesis shard into Redshift complete (41 events)
+Load redshift Succeeded.
+```
+
+#### To run the loader manually, you can run the following:
 
 ```
 bundle exec ruby load_redshift.rb
 ```
 
-To install a cron job to periodically run the loader, there is a rake task...
+#### You can install a cron job, using whenever, to periodically run the loader:
 
-When the loader is run, it will generate alot of output... The get_records request runs in a loop, 100 times, so there'll be a ton of INFO statements to that effect. If successful and events are loaded, the end of the output looks like this:
+This will generate output to /tmp/load_redshift.out
+
 ```
-I, [2014-11-10T13:21:17.529420 #40630]  INFO -- : RedTrack::Loader (23.77s elapsed) Load kinesis shard into Redshift complete (41 events)
-Load redshift Succeeded.
+whenever -w
 ```
 
 ## Querying data
