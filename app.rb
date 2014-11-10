@@ -2,15 +2,18 @@ require 'sinatra'
 require 'redtrack'
 require 'time'
 require 'yaml'
+require 'logger'
 
 # Require the configuration file containing configuration for redshift
-require './configuration'
+require './p_configuration'
 
 ## Configuration for sinatra. Bind to port 8080 on all interfaces
 set :bind, '0.0.0.0'
 set :port, 3000
 set :logging, true
 
+## This needs to be set in order for foreman to capture stdout
+$stdout.sync = true
 
 ## App Endpoints
 get '/ping' do
@@ -38,5 +41,4 @@ get '/event' do
       out << "<PRE>FAIL</PRE>"
     end
   end
-
 end
