@@ -8,7 +8,7 @@ Install bundler - http://bundler.io/
 gem install bundler
 ```
 
-Install dependent gems
+Use bundler to install dependent gems
 ```
 bundle install
 ```
@@ -17,9 +17,11 @@ bundle install
 
 This project depends on some AWS services - specifically Redshift and Kinesis. You must have an AWS account and a redshift cluster setup.
 
-1) Edit configuration.rb - fill in appropriate values
+1) If you don't have one yet, Launch a Redshift cluster - https://console.aws.amazon.com/redshift/home
 
-2) Run script to setup AWS resources
+2) Edit configuration.rb - fill in appropriate values
+
+3) Run script to setup AWS resources
 
 ```
 bundle exec ruby setup_redtrack_aws_resources.rb
