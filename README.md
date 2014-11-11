@@ -13,7 +13,7 @@ Use bundler to install dependent gems
 bundle install
 ```
 
-## AWS Setup
+## AWS Resource Setup
 
 This project depends on some AWS services - specifically Redshift and Kinesis. You must have an AWS account and a redshift cluster setup.
 
@@ -21,7 +21,18 @@ This project depends on some AWS services - specifically Redshift and Kinesis. Y
 
 2) Edit configuration.rb - fill in appropriate values
 
-3) Run script to setup AWS resources
+3) Create database "sintatra_example" in your redshift cluster. This can be done via PSQL:
+```
+$ psql --host=REDSHIFT_HOSTNAME --port=5439 --username=USER_NAME --dbname=sinatra_example -W
+Password for user dba: 
+psql (9.3.5, server 8.0.2)
+SSL connection (cipher: ECDHE-RSA-AES256-SHA, bits: 256)
+Type "help" for help.
+
+sinatra_example=# CREATE DATABASE sinatra_example;
+```
+
+4) Run script to setup AWS resources - this creates tables in Redshift and Kinesis streams
 
 ```
 bundle exec ruby setup_redtrack_aws_resources.rb
