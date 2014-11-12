@@ -1,6 +1,6 @@
 require 'redtrack'
 require 'yaml'
-require './p_configuration'
+require './configuration'
 
 loader = $redtrack_client.new_loader()
 

@@ -5,7 +5,7 @@ require 'yaml'
 require 'logger'
 
 # Require the configuration file containing configuration for redshift
-require './p_configuration'
+require './configuration'
 
 ## Configuration for sinatra. Bind to port 8080 on all interfaces
 set :bind, '0.0.0.0'
