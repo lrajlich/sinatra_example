@@ -9,6 +9,22 @@ SCHEMAS= {
             :message =>       { :type => 'varchar(128)' }
         },
         :sortkey => 'timestamp'
+    },
+    :test_all_types => {
+        :columns => {
+            :test_smallint =>     { :type => 'smallint'},
+            :test_integer =>      { :type => 'integer', :constraint => 'not null'},
+            :test_bigint =>       { :type => 'bigint'},
+            :test_decimal =>      { :type => 'decimal(8,2)'},
+            :test_real =>         { :type => 'real'},
+            :test_double =>       { :type => 'double precision'},
+            :test_bool =>         { :type => 'boolean'},
+            :test_char =>         { :type => 'char(32)'},
+            :test_varchar =>      { :type => 'varchar(32)', :constraint => 'not null'},
+            :test_date =>         { :type => 'date'},
+            :test_timestamp =>    { :type => 'timestamp'}
+        },
+        :sortkey => 'test_timestamp'
     }
 }
 
